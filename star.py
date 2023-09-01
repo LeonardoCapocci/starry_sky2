@@ -3,7 +3,7 @@ from pygame.sprite import Sprite
 
 class Star(Sprite):
     """A class to represent a single star"""
-    def __init__(self, game):
+    def __init__(self, game, x_position, y_position):
         """Spawn a single star on the screen"""
         super().__init__()
         self.screen = game.screen
@@ -12,10 +12,5 @@ class Star(Sprite):
         self.image = pygame.transform.scale(self.image, (20,20))
         self.rect = self.image.get_rect()
         
-        # Set star at top left with some breathing room
-        self.rect.x = self.image.get_width()
-        self.rect.y = self.image.get_height()
-
-    def create_star(self):
-        """Draws the star"""
-        
+        self.rect.x = x_position
+        self.rect.y = y_position
