@@ -1,5 +1,6 @@
 import sys
 import pygame
+from random import randint
 
 from star import Star
 
@@ -11,14 +12,15 @@ class StarrySky:
         self.screen = pygame.display.set_mode((1280, 720))
         self.clock = pygame.time.Clock()
         self.all_stars = pygame.sprite.Group()
-
-    def run_app(self):
         self.screen.fill((0,0,30))
         self.create_starry_sky()
+        self.all_stars.draw(self.screen)
+
+    def run_app(self):
+
         while True:
             self._check_events()
-
-            self.clock.tick(900)
+            self.clock.tick(60)
             pygame.display.flip()
 
     def _check_events(self):
@@ -38,15 +40,15 @@ class StarrySky:
     def create_starry_sky(self):
         """Create the grid of stars."""
         screen_width, screen_height = self.screen.get_size()
-        current_x, current_y = 20, 20
+        current_x, current_y = 100, 100
         
-        while current_y < screen_height - 20:
-            while current_x < screen_width - 20:
+        while current_y < screen_height - 100:
+            while current_x < screen_width - 100:
                 self._create_star(current_x, current_y)
-                current_x += 200
-            current_x = 20
-            current_y += 200
-        self.all_stars.draw(self.screen)
+                current_x += randint(80, 300)
+            current_x = 100
+            current_y += randint(80, 300)
+        
 
 if __name__ == '__main__':
     ss = StarrySky()
